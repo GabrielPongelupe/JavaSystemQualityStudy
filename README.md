@@ -238,15 +238,128 @@ repositorio_exemplo,DIT,Depth Inheritance Tree,245,2.1,2.0,1.2,1,8
 
 ---
 
-## Próximos Passos (Lab02S02)
+## Lab02S02 - Análise Completa e Relatório Final
 
-Para a segunda entrega do laboratório:
+### Execução Rápida
 
-1. **Execute análise em múltiplos repositórios** da lista dos 1000
-2. **Colete métricas do GitHub** (estrelas, forks, idade, atividade)
-3. **Analise correlações** entre popularidade/maturidade/atividade e qualidade
-4. **Gere visualizações** e **testes estatísticos**
-5. **Elabore relatório final** com hipóteses e discussão
+```bash
+# 1. Instalar dependências
+pip install -r src/requirements.txt
+
+# 2. Executar análise completa (1000 repositórios)
+python run_lab02s02.py --repos repositorios_java.csv --ck tools/ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar
+
+# 3. Teste com poucos repositórios (recomendado primeiro)
+python test_analysis.py
+```
+
+### Funcionalidades Implementadas
+
+1. **Análise Completa dos 1000 Repositórios**
+   - Coleta automática de métricas do GitHub
+   - Análise CK de qualidade de código
+   - Processamento estatístico avançado
+
+2. **Visualizações e Gráficos**
+   - Matriz de correlação
+   - Scatter plots com tendências
+   - Distribuições das métricas
+   - Box plots por quartis de popularidade
+
+3. **Testes Estatísticos**
+   - Correlação de Pearson (linear)
+   - Correlação de Spearman (monotônica)
+   - Correlação de Kendall
+   - Testes de normalidade (Shapiro-Wilk)
+   - Análise por quartis
+
+4. **Relatório Final Automático**
+   - Hipóteses para cada questão de pesquisa
+   - Resultados estatísticos
+   - Discussão e interpretação
+   - Limitações e próximos passos
+
+### Instruções Detalhadas
+
+#### Passo 1: Preparação do Ambiente
+
+```bash
+# Instalar dependências Python
+pip install -r src/requirements.txt
+
+# Verificar Java (necessário para CK)
+java -version
+
+# Verificar se CK JAR existe
+ls -la tools/ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar
+```
+
+#### Passo 2: Coleta de Repositórios (se necessário)
+
+```bash
+# Buscar top 1000 repositórios Java
+python src/fetch_repos.py --out repositorios_java.csv --pages 10
+```
+
+#### Passo 3: Teste com Poucos Repositórios (Recomendado)
+
+```bash
+# Teste rápido com 3 repositórios
+python test_analysis.py
+```
+
+#### Passo 4: Análise Completa
+
+```bash
+# Análise completa (pode demorar várias horas)
+python run_lab02s02.py \
+  --repos repositorios_java.csv \
+  --ck tools/ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar \
+  --outdir docs/results \
+  --max-repos 100  # Limite para teste
+
+# Para análise completa (1000 repositórios)
+python run_lab02s02.py \
+  --repos repositorios_java.csv \
+  --ck tools/ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar \
+  --token $GITHUB_TOKEN  # Opcional, evita rate limits
+```
+
+#### Passo 5: Análise dos Resultados
+
+```bash
+# Visualizar resultados
+ls -la docs/results/
+ls -la docs/results/plots/
+
+# Ler relatório final
+cat docs/results/relatorio_final_lab02s02.md
+```
+
+### Estrutura de Saída
+
+```
+docs/results/
+├── complete_analysis.csv          # Dados brutos de todos os repositórios
+├── relatorio_final_lab02s02.md    # Relatório final do laboratório
+├── statistical_report.md          # Relatório estatístico detalhado
+└── plots/                         # Visualizações
+    ├── correlation_heatmap.png
+    ├── scatter_stars.png
+    ├── distributions.png
+    ├── quality_by_popularity_quartiles.png
+    └── pairplot.png
+```
+
+### Parâmetros de Configuração
+
+- `--repos`: Arquivo CSV com lista de repositórios
+- `--ck`: Caminho para ferramenta CK JAR
+- `--outdir`: Diretório de saída (padrão: docs/results)
+- `--token`: Token GitHub (opcional, evita rate limits)
+- `--max-repos`: Limite de repositórios para analisar
+- `--skip-checks`: Pula verificações de requisitos
+- `--stats-only`: Executa apenas análise estatística
 
 ---
 

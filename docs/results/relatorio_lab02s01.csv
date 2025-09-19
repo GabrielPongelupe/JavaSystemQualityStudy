@@ -1,7 +1,0 @@
-repositorio,metrica,nome_metrica,obrigatoria,classes_analisadas,media,mediana,desvio_padrao,minimo,maximo,q1,q3
-repositorio_java,CBO,Coupling Between Objects,True,90268,2.21,2.0,2.11,0,42,1.0,3.0
-repositorio_java,WMC,Weighted Method Class,False,90268,1.51,1.0,2.64,1,542,1.0,1.0
-repositorio_java,LOC,Lines of Code,False,90268,6.31,3.0,8.25,1,894,3.0,7.0
-repositorio_java,RFC,Response for Class,False,90268,3.29,2.0,4.36,0,70,0.0,5.0
-repositorio_java,FANIN,Fan In,False,90268,0.76,0.0,2.95,0,173,0.0,1.0
-repositorio_java,FANOUT,Fan Out,False,90268,1.0,0.0,3.03,0,71,0.0,1.0
